@@ -18,3 +18,12 @@
    93  kubectl apply -f my2-pod.yaml
    94  kubectl get pod
    95  kubectl get pod -n prod
+
+###########################################################
+REPLICASET
+
+ cd /k8s-code
+   99  vim my4-pod.yaml
+  100  vim replicaset.yaml
+  101  kubectl apply -f  replicaset.yaml
+  102  kubectl get rs
