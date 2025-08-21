@@ -4,7 +4,7 @@ Create an instance :
 	new key
  	10 gb 
 	gp2
-
+ 
 connect in terminal 
 	-> normal steps -> sudo su - -> hostnamectl
 
