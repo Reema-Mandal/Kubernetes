@@ -26,4 +26,4 @@ REPLICASET
    99  vim my4-pod.yaml
   100  vim replicaset.yaml
   101  kubectl apply -f  replicaset.yaml
-  102  kubectl get rs
+  102  kubectl get rs 
