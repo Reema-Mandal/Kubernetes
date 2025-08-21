@@ -57,8 +57,32 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
    sudo apt-get install -y kubelet kubeadm kubectl
    sudo systemctl enable --now kubelet
    kubeadm config images pull
- kubeadm init
- mkdir -p $HOME/.kube
+   kubeadm get node // for two other nodes
+ kubeadm init // only for master 
+/// kubeadm join 172.31.6.18:6443 --token na4e56.hfmogrixf0oav8wd \
+        --discovery-token-ca-cert-hash sha256:08d94b8ff7b44d2001cf3b130f1e3967bf2c016f33c0dd4a480bdefc33510051//// this will appear in the 
+master node which is to be pasted in the other two terminals//////
+ ///mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config/// only for master node
 
+Configure Pod Network
+#################
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/calico.yaml -O
+kubectl apply -f calico.yaml
+kubectl get node 
+################
+  kubectl get node -o wide
+  kubectl get pod
+  kubectl get ns
+  kubectl get pod -n kube-system
+  kubectl get pod -n kube-public
+  kubectl get pod -n kube-node-lease
+  mkdir /k8s-code
+  cd /k8s-code
+  vim my-pod.yaml
+// search qubernetes pods and paste the first code //
+  kubectl apply -f my-pod.yaml
+  kubectl get pod -n default 
+ if status is not in runing stage then Configure Pod Network again
+ then write --   kubectl get pod -n default 
