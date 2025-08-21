@@ -1,1 +1,20 @@
 
+    vim reema.yaml // entering the file
+    cd /k8s-code/
+    cp my-pod.yaml my1-pod.yaml // copying my pod
+    vim my1-pod.yaml // entering the copied file
+     kubectl apply -f my1-pod.yaml --namespace=prod // changes are being applied
+     kubectl get pod
+     cp my1-pod.yaml my4-pod.yaml
+     vim my4-pod.yaml
+    kubectl apply -f my4-pod.yaml
+   86  kubectl get pod
+   87  vim my4-pod.yaml
+   88  kubectl apply -f my4-pod.yaml
+   89  kubectl get pod
+   90  vim my4-pod.yaml
+   91  cp my1-pod.yaml my2-pod.yaml
+   92  vim my2-pod.yaml
+   93  kubectl apply -f my2-pod.yaml
+   94  kubectl get pod
+   95  kubectl get pod -n prod
