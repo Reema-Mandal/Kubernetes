@@ -20,6 +20,8 @@ TCP	Inbound	10257
 TCP	Inbound	10256
 TCP	Inbound	30000-32767
 UDP	Inbound	30000-32767
+All ICMP
+ping and paste the ip
  apt update -y
     apt install containerd -y
     systemctl start containerd
@@ -27,13 +29,14 @@ UDP	Inbound	30000-32767
     sudo modprobe overlay
     sudo modprobe br_netfilter
     cat > /etc/modules-load.d/kubernetes.conf << EOF
-    br_netfilter
-    ip_vs
-    ip_vs_rr
-    ip_vs_wrr
-    ip_vs_sh
-    overlay
-    EOF
+ br_netfilter
+ip_vs
+ip_vs_rr
+ip_vs_wrr
+ip_vs_sh
+overlay
+EOF
+ 
 
 cat > /etc/sysctl.d/kubernetes.conf << EOF
 net.ipv4.ip_forward = 1
@@ -57,7 +60,6 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
    sudo apt-get install -y kubelet kubeadm kubectl
    sudo systemctl enable --now kubelet
    kubeadm config images pull
-   kubeadm get node // for two other nodes
  kubeadm init // only for master 
 /// kubeadm join 172.31.6.18:6443 --token na4e56.hfmogrixf0oav8wd \
         --discovery-token-ca-cert-hash sha256:08d94b8ff7b44d2001cf3b130f1e3967bf2c016f33c0dd4a480bdefc33510051//// this will appear in the 
@@ -65,6 +67,7 @@ master node which is to be pasted in the other two terminals//////
  ///mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config/// only for master node
+    
 
 Configure Pod Network
 #################
